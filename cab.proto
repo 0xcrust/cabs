@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package cab;
+
+// Top levelgRPC service with two RPC calls
+service CabService {
+    rpc record_cab_location(CabLocationRequest) returns
+    (CabLocationResponse);
+
+    rpc get_cabs(GetCabRequest) returns (GetCabResponse);
+}
+
+// A request to record location of a cab
+// Name:unique name for a cab
+// Location: current location of the given cab
+message CabLocationRequest {
+    string name = 1;
+    Location location = 2;
+}
+
+// A request for a CabLocationRequest
+// Accepted: a boolean indicating if this request was accepted 
+// for processing
+message CabLocationResponse {
+    bool accepted = 1;
+}
+
+// A request to return Cabs at a given location
+// Location:a given location
+message GetCabRequest {
+    Location location = 1;
+}
+
+// A response for GetCabLocation
+// Cab: the cab gotten
+message GetCabResponse {
+    repeated Cab cabs = 1;
+}
+
+// Message that the CabLocationRequest passes to the server
+message Cab {
+    string name = 1;
+    Location location = 2;
+}
+
+// Message with the location of a cab
+message Location {
+    enum Direction {
+        North = 0;
+        South = 1;
+        East = 2;
+        West = 3;
+    }
+
+    float latitude = 1;
+    Direction lat_direction = 2;
+
+    float longitude = 3;
+    Direction long_direction = 4;
+}
