@@ -38,7 +38,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             std::io::stdin().read_line(&mut longitude).expect("Failed reading longitude");
     
             let mut latitude = latitude.trim().to_string();
+            /*
             let lat_direction = match latitude.pop().unwrap().to_lowercase().collect::<Vec<_>>()[0] {
+                'n' => 0,
+                's' => 1,
+                _ => { panic!("Invalid direction for latitude"); }
+            };*/
+            let lat_direction = match latitude.pop().unwrap().to_lowercase().nth(0).unwrap() {
                 'n' => 0,
                 's' => 1,
                 _ => { panic!("Invalid direction for latitude"); }
@@ -49,7 +55,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("Latitude value : {}", lat_value);
     
             let mut longitude = longitude.trim().to_string();
+
+            /*
             let long_direction = match longitude.pop().unwrap().to_lowercase().collect::<Vec<_>>()[0] {
+                'e' => 2,
+                'w' => 3,
+                _ => { panic!("Invalid direction for longitude");}
+            };*/
+
+            let long_direction = match longitude.pop().unwrap().to_lowercase().nth(0).unwrap() {
                 'e' => 2,
                 'w' => 3,
                 _ => { panic!("Invalid direction for longitude");}
