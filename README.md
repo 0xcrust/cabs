@@ -1,4 +1,4 @@
-### Demonstrates building a Grpc client and server in Rust using tonic and proto3.
+### Rpc client and server for an uber-like service.
 
 ### Guide
 - Navigate to the root folder in your cli.
